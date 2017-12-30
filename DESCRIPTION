@@ -8,3 +8,4 @@ Description: Includes - applying calibrations, applying zeros.
 License: MIT
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.0.1
