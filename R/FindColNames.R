@@ -13,8 +13,8 @@
 #' @param preserve_case Boolean. If TRUE (default) then match case, if
 #'     		FALSE then ignore string case when matching.
 #'
-#' @return cols. Vector of column headings that match the col_match
-#'     		substrings.
+#' @return Vector of column headings that match the col_match
+#'     		 substrings. If no matches are found then returns empty vector
 
 
 FindColNames <- function(df,col.match="all",preserve.case=TRUE) {
@@ -36,7 +36,5 @@ FindColNames <- function(df,col.match="all",preserve.case=TRUE) {
   matches <- sapply(col.match,grepl,headings,ignore.case=!preserve.case)
   matches.any <- apply(matches,1,any)
   
-  cols <- headings[matches.any]
-
-  return(cols)
+  return(headings[matches.any])
 }
