@@ -61,7 +61,7 @@ InterpSeries = function(df,cols,series_col='date') {
     interp_func <- approxfun(series.good[!is.na(df[,col])],col.good,rule=2)
 
     # Create new col and populate with interpolated data
-    df$col.new <- interp_func(series.good)
+    df[col.new] <- interp_func(series.good)
   }
 
   return(df)
