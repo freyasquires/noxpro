@@ -5,6 +5,10 @@
 #' monotonic series. Linear interpolation is used and extrapolation at
 #' either end is given as a constant value, ie approxfun with rule=2 is used.
 #' 
+#' If the number of interpolation points is 0, df is returned unmodified with
+#' a warning. If the number of interpolation points is 1, df is returned with
+#' additional column/s filled with a constant value. A warning is also printed.
+#' 
 #' @name InterpSeries
 #' @param df Dataframe containing both series_col and cols columns
 #' @param cols Column name or number or vector thereof for column/s to
@@ -57,11 +61,24 @@ InterpSeries = function(df,cols,series_col='date') {
     # Only use data rows without NANs
     col.good <- df[,col][!is.na(df[,col])]
 
-    # Create interpolation function
-    interp_func <- approxfun(series.good[!is.na(df[,col])],col.good,rule=2)
+    if (length(col.good) == 0) {
+      # If there are no non-nan data points then return unmodified df
+      # with a warning
+      print("No good data points found. Returning input dataframe.")
+    } else if (length(col.good) == 1) {
+      # If there is only a single good data point then fill col with
+      # that value with warning
+      print("Only single good data point found.")
+      print("Interpolation not possible so using constant value.")
+      df[col.new] <- col.good
+    } else {
+      # Multiple good data points so do linear interpolation
+      # Create interpolation function
+      interp_func <- approxfun(series.good[!is.na(df[,col])],col.good,rule=2)
 
-    # Create new col and populate with interpolated data
-    df[col.new] <- interp_func(series.good)
+      # Create new col and populate with interpolated data
+      df[col.new] <- interp_func(series.good)
+    }
   }
 
   return(df)
