@@ -13,5 +13,5 @@ StateChange(col)
 Row numbers where change happens for col.
 }
 \description{
-Returns the row number of a change in value.
+Returns the row number of a change in value in a given column.
 }
