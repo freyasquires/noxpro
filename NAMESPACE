@@ -3,4 +3,7 @@
 export(CreateCalFlags)
 export(ExcelToUnix)
 export(GoodCalPrompt)
+export(InterpSeries)
 export(StateChange)
+export(SubsampleSeries)
+export(TidyCalVals)
