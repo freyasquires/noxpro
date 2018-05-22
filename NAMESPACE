@@ -2,6 +2,7 @@
 
 export(CreateCalFlags)
 export(ExcelToUnix)
+export(FindColNames)
 export(GoodCalPrompt)
 export(InterpSeries)
 export(StateChange)
