@@ -15,6 +15,8 @@
 #'
 #' @return Vector of column headings that match the col_match
 #'     		 substrings. If no matches are found then returns empty vector
+#'     		 
+#'@export 
 
 
 FindColNames <- function(df,col.match="all",preserve.case=TRUE) {
